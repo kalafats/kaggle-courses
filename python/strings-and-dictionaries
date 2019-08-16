@@ -1,0 +1,106 @@
+### escape char
+'Pluto\'s a planet!'
+> "Pluto's a planet!"
+
+###
+hello = "hello\nworld"
+print(hello)
+> hello
+  world
+
+###
+# The print() function automatically adds a newline character unless we specify a value 
+# for the keyword argument end other than the default value of '\n'
+print("hello")
+print("world")
+print("hello", end='')
+print("pluto", end='')
+> hello
+  world
+  hellopluto
+
+### Indexing
+planet = 'Pluto'
+planet[0]
+> 'P'
+
+### Slicing
+planet[-3:]
+> 'uto'
+
+### Yes, we can even loop over them
+[char+'! ' for char in planet]
+> ['P! ', 'l! ', 'u! ', 't! ', 'o! ']
+
+### ALL CAPS
+claim = "Pluto is a planet!"
+claim.upper()
+> 'PLUTO IS A PLANET!'
+
+### Searching for the first index of a substring
+claim.index('plan')
+> 11
+
+### split
+datestr = '1956-01-31'
+year, month, day = datestr.split('-')
+
+### join
+'/'.join([month, day, year])
+> '01/31/1956'
+
+### str.format() 
+"{}, you'll always be the {}th planet to me.".format(planet, position)
+> "Pluto, you'll always be the 9th planet to me."
+
+### some more formatting
+pluto_mass = 1.303 * 10**22
+earth_mass = 5.9722 * 10**24
+population = 52910390
+#         2 decimal points   3 decimal points, format as percent     separate with commas
+"{} weighs about {:.2} kilograms ({:.3%} of Earth's mass). It is home to {:,} Plutonians.".format(
+    planet, pluto_mass, pluto_mass / earth_mass, population,
+)
+> "Pluto weighs about 1.3e+22 kilograms (0.218% of Earth's mass). It is home to 52,910,390 Plutonians."
+
+### DICTIONARIES
+numbers = {'one':1, 'two':2, 'three':3}
+numbers['one']
+> 1
+
+### Add to a dict
+numbers['eleven'] = 11
+numbers
+> {'one': 1, 'two': 2, 'three': 3, 'eleven': 11}
+
+### Dict comprehension
+planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+planet_to_initial = {planet: planet[0] for planet in planets}
+planet_to_initial
+> {'Mercury': 'M', 'Venus': 'V', 'Earth': 'E', 'Mars': 'M', 'Jupiter': 'J', 'Saturn': 'S', 'Uranus': 'U', 'Neptune': 'N'}
+
+### The in operator tells us whether something is a key in the dictionary
+'Saturn' in planet_to_initial
+> True
+
+### A for loop over a dictionary will loop over its keys
+for k in numbers:
+    print("{} = {}".format(k, numbers[k]))
+> one = Pluto
+  two = 2
+  three = 3
+  eleven = 11
+
+### The very useful dict.items() method lets us iterate over the keys and values of a dictionary simultaneously. (In Python jargon, an item refers to a key, value pair)
+for planet, initial in planet_to_initial.items():
+    print("{} begins with \"{}\"".format(planet.rjust(10), initial))
+>  Mercury begins with "M"
+     Venus begins with "V"
+     Earth begins with "E"
+      Mars begins with "M"
+   Jupiter begins with "J"
+    Saturn begins with "S"
+    Uranus begins with "U"
+   Neptune begins with "N"
+   
+ 
