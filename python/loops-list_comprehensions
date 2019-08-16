@@ -1,0 +1,28 @@
+###
+planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+for planet in planets:
+    print(planet, end=' ') # print all on same line
+
+>Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune
+
+###
+short_planets = [planet for planet in planets if len(planet) < 6]
+short_planets
+
+>['Venus', 'Earth', 'Mars']
+
+###
+loud_short_planets = [planet.upper() + '!' for planet in planets if len(planet) < 6]
+loud_short_planets
+
+>['VENUS!', 'EARTH!', 'MARS!']
+
+### return the # of -ve elements in a list
+def count_negatives(nums):
+    return len([num for num in nums if num < 0])
+    
+### return the # of -ve elements in a list (even sleeker)
+def count_negatives(nums):
+    # Reminder: in the "booleans and conditionals" exercises, we learned about a quirk of 
+    # Python where it calculates something like True + True + False + True to be equal to 3.
+    return sum([num < 0 for num in nums])
