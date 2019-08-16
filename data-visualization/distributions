@@ -1,0 +1,32 @@
+### Load the data
+# Path of the file to read
+iris_filepath = "../input/iris.csv"
+
+# Read the file into a variable iris_data
+iris_data = pd.read_csv(iris_filepath, index_col="Id")
+
+# Print the first 5 rows of the data
+iris_data.head()
+>Sepal Length (cm)	Sepal Width (cm)	Petal Length (cm)	Petal Width (cm)	Species
+Id					
+1	5.1	3.5	1.4	0.2	Iris-setosa
+2	4.9	3.0	1.4	0.2	Iris-setosa
+3	4.7	3.2	1.3	0.2	Iris-setosa
+4	4.6	3.1	1.5	0.2	Iris-setosa
+5	5.0	3.6	1.4	0.2	Iris-setosa
+
+### Histogram 
+sns.distplot(a=iris_data['Petal Length (cm)'], kde=False)
+
+### Density Plot - smoothed histogram
+# Setting shade=True colors the area below the curve (and data= has identical functionality as when we made the histogram above).
+
+# KDE plot 
+sns.kdeplot(data=iris_data['Petal Length (cm)'], shade=True)
+
+### 2D KDE plots - sns.joinplot
+# We can create a two-dimensional (2D) KDE plot with the sns.jointplot command.
+# In the plot below, the color-coding shows us how likely we are to see different combinations of sepal width and petal length, where darker parts of the figure are more likely.
+
+# 2D KDE plot
+sns.jointplot(x=iris_data['Petal Length (cm)'], y=iris_data['Sepal Width (cm)'], kind="kde")
