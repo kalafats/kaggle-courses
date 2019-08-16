@@ -23,13 +23,13 @@ sns.scatterplot(x=insurance_data['bmi'], y=insurance_data['charges'])
 ### Add regression line to scatter plot 
 sns.regplot(x=insurance_data['bmi'], y=insurance_data['charges'])
 
-### Color-coded scatter plots - ADD hue
+### Color-coded scatter plots - ADD hue to scatter plot
 # We can use scatter plots to display the relationships between (not two, but...) three variables! One way of doing this is by color-coding the points.
 # For instance, to understand how smoking affects the relationship between BMI and insurance costs, we can color-code the points by 'smoker', and plot the other two columns ('bmi', 'charges') on the axes.
 
 sns.scatterplot(x=insurance_data['bmi'], y=insurance_data['charges'], hue=insurance_data['smoker'])
 
-### Color-coded scatter plots WITH regression line - sns.lmplot
+### Color-coded scatter plots WITH regression lines - sns.lmplot
 sns.lmplot(x="bmi", y="charges", hue="smoker", data=insurance_data)
 
 ### Swarmplot (categorical scatter plot) - use this when one variable (here 'smoker' as x) is categorical)
