@@ -1,0 +1,39 @@
+### Load the data
+# Path of the file to read
+insurance_filepath = "../input/insurance.csv"
+
+# Read the file into a variable insurance_data
+insurance_data = pd.read_csv(insurance_filepath)
+# As always, we check that the dataset loaded properly by printing the first five rows.
+
+insurance_data.head()
+> age	sex	bmi	children	smoker	region	charges
+0	19	female	27.900	0	yes	southwest	16884.92400
+1	18	male	33.770	1	no	southeast	1725.55230
+2	28	male	33.000	3	no	southeast	4449.46200
+3	33	male	22.705	0	no	northwest	21984.47061
+4	32	male	28.880	0	no	northwest	3866.85520
+
+### Scatter plots
+# To create a simple scatter plot, we use the sns.scatterplot command and specify the values for:
+# the horizontal x-axis (x=insurance_data['bmi']), and
+# the vertical y-axis (y=insurance_data['charges']).
+sns.scatterplot(x=insurance_data['bmi'], y=insurance_data['charges'])
+
+### Add regression line to scatter plot 
+sns.regplot(x=insurance_data['bmi'], y=insurance_data['charges'])
+
+### Color-coded scatter plots - ADD hue
+# We can use scatter plots to display the relationships between (not two, but...) three variables! One way of doing this is by color-coding the points.
+# For instance, to understand how smoking affects the relationship between BMI and insurance costs, we can color-code the points by 'smoker', and plot the other two columns ('bmi', 'charges') on the axes.
+
+sns.scatterplot(x=insurance_data['bmi'], y=insurance_data['charges'], hue=insurance_data['smoker'])
+
+### Color-coded scatter plots WITH regression line - sns.lmplot
+sns.lmplot(x="bmi", y="charges", hue="smoker", data=insurance_data)
+
+### Swarmplot (categorical scatter plot) - use this when one variable (here 'smoker' as x) is categorical)
+sns.swarmplot(x=insurance_data['smoker'],
+              y=insurance_data['charges'])
+
+
