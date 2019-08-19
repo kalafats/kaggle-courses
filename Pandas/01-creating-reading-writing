@@ -18,3 +18,26 @@ Eggs     2 large
 Spam       1 can
 Name: Dinner, dtype: object
 
+### using index_col argument
+reviews = pd.read_csv('../input/wine-reviews/winemag-data_first150k.csv',index_col=0)
+
+### write to csv
+animals.to_csv('cows_and_goats.csv')
+
+### read SQL data into a dataframe
+import sqlite3
+conn = sqlite3.connect("../input/pitchfork-data/database.sqlite")
+music_reviews = pd.read_sql_query("SELECT * FROM artists", conn)
+> reviewid	artist
+0	22703	massive attack
+1	22721	krallice
+...	...	...
+18829	2413	don caballero
+18830	3723	neil hamburger
+18831 rows × 2 columns
+
+
+
+
+
+
