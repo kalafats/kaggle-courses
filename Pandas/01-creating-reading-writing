@@ -1,0 +1,20 @@
+import pandas as pd
+fruits = pd.DataFrame({'Apples':[30],'Bananas':[21]})
+fruits
+>	Apples	Bananas
+0	30	21
+
+fruit_sales = pd.DataFrame({'Apples':[35,41],'Bananas':[21,34]},index=['2017 Sales','2018 Sales'])
+fruit_sales
+>           Apples	Bananas
+2017 Sales	35	21
+2018 Sales	41	34
+
+ingredients = pd.Series(['4 cups','1 cup','2 large','1 can'],index=['Flour','Milk','Eggs','Spam'],name='Dinner')
+ingredients
+>Flour     4 cups
+Milk       1 cup
+Eggs     2 large
+Spam       1 can
+Name: Dinner, dtype: object
+
