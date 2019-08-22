@@ -21,3 +21,26 @@ centered_price = reviews.price - reviews.price.mean()
 ### Create a variable `bargain_wine` with the title of the wine with the highest points-to-price ratio in the dataset.
 bargain_wine = reviews.title[(reviews.points / reviews.price).idxmax()]
 
+### Is a wine more likely to be "tropical" or "fruity"? Create a Series `descriptor_counts` counting how many times each of these two words appears in the `description` column in the dataset.
+
+tropical = reviews.description.map(lambda p: 'tropical' in p).sum()
+fruity = reviews.description.map(lambda p: 'fruity' in p).sum()
+descriptor_counts = pd.Series([tropical,fruity],index=['tropical','fruity'])
+descriptor_counts
+>tropical    3607
+fruity      9090
+dtype: int64
+
+### Create a series `star_ratings` with the number of stars corresponding to each review in the dataset. A score of 95 or higher counts as 3 stars, a score of at least 85 but less than 95 is 2 stars. Any other score is 1 star.
+
+def rescore(s):
+    if s>=95:
+        return 3
+    elif s>=85:
+        return 2
+    else:
+        return 1
+
+star_ratings = reviews.points.apply(rescore)
+
+
