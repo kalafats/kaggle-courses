@@ -1,0 +1,31 @@
+### Load data
+import pandas as pd
+
+reviews = pd.read_csv("../input/wine-reviews/winemag-data-130k-v2.csv", index_col=0)
+pd.set_option("display.max_rows", 5)
+
+### Select the `description` column from `reviews` and assign the result to the variable `desc`.
+desc = reviews.description
+
+### select the first raw
+first_row = reviews.iloc[0]
+
+### select certain raws and assing to a new pandas frame
+indices = [1, 2, 3, 5, 8]
+sample_reviews = reviews.loc[indices]
+
+### select certain cols and certain raws
+df = reviews[['country','province','region_1','region_2']].iloc[[0,1,10,100]]
+
+### Both loc and iloc are row-first, column-second. This is the opposite of what we do in native Python, which is column-first, row-second. This means that it's marginally easier to retrieve rows, and marginally harder to get retrieve columns. To get a column with iloc, we can do the following:
+
+reviews.iloc[:, 0]
+
+### Create a variable `df` containing the `country` and `variety` columns of the first 100 records.
+df = reviews.loc[0:99,['country','variety']]
+
+### Create a DataFrame `italian_wines` containing reviews of wines made in `Italy`
+italian_wines = reviews[reviews.country == 'Italy']
+
+### Create a DataFrame `top_oceania_wines` containing all reviews with at least 95 points (out of 100) for wines from Australia or New Zealand.
+top_oceania_wines = reviews[reviews.country.isin(['Australia','New Zealand']) & (reviews.points >= 95)]
