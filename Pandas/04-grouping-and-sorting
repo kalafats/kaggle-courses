@@ -25,3 +25,23 @@ best_rating_per_price
 3300.0    88
 Name: points, Length: 390, dtype: int64
 
+### Create a `DataFrame` whose index is the `variety` category from the dataset and whose values are the `min` and `max` values thereof.
+
+price_extremes = pd.DataFrame({'min':reviews.groupby('variety')['price'].min(),'max':reviews.groupby('variety')['price'].max()})
+# or a sleeker soln
+price_extremes = reviews.groupby('variety').price.agg([min, max])
+
+### Create a variable `sorted_varieties` containing a copy of the dataframe from the previous question where varieties are sorted in descending order based on minimum price, then on maximum price (to break ties).
+
+sorted_varieties = price_extremes.sort_values(by=['min','max'],ascending=False)
+
+### Create a `Series` whose index is reviewers and whose values is the average review score given out by that reviewer. Hint: you will need the `taster_name` and `points` columns.
+
+reviewer_mean_ratings = reviews.groupby('taster_name')['points'].mean()
+# or equivalently
+reviewer_mean_ratings = reviews.groupby('taster_name').points.mean()
+
+### Create a `Series` whose index is a `MultiIndex`of `{country, variety}` pairs. For example, a pinot noir produced in the US should map to `{"US", "Pinot Noir"}`. Sort the values in the `Series` in descending order based on wine count.
+
+country_variety_counts = reviews.groupby(['country','variety']).size().sort_values(ascending=False)
+
