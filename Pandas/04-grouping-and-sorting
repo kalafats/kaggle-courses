@@ -1,0 +1,27 @@
+### Load the data
+import pandas as pd
+reviews = pd.read_csv("../input/wine-reviews/winemag-data-130k-v2.csv", index_col=0)
+pd.set_option("display.max_rows", 5)
+
+### Who are the most common wine reviewers in the dataset? Create a `Series` whose index is the `taster_twitter_handle` category from the dataset, and whose values count how many reviews each person wrote.
+
+reviews_written = reviews.groupby('taster_twitter_handle').taster_twitter_handle.count()
+
+### Create a `Series` whose index is wine prices and whose values is the maximum number of points a wine costing that much was given in a review. Sort the values by price, ascending (so that `4.0` dollars is at the top and `3300.0` dollars is at the bottom).
+
+best_rating_per_price = reviews.groupby('price')['points'].max().sort_index()
+best_rating_per_price
+>price
+4.0       86
+5.0       87
+6.0       88
+7.0       91
+8.0       91
+          ..
+1900.0    98
+2000.0    97
+2013.0    91
+2500.0    96
+3300.0    88
+Name: points, Length: 390, dtype: int64
+
