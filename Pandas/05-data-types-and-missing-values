@@ -50,3 +50,6 @@ Name: region_2, Length: 129971, dtype: object
 ### Replace a value in a col with another value (old->"@kerinokeefe", new->"@kerino")
 reviews.taster_twitter_handle.replace("@kerinokeefe", "@kerino")
 
+### How many reviews in the dataset are missing a price?
+reviews.price.isnull().sum()
+
