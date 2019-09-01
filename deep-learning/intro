@@ -1,0 +1,9 @@
+### define a convolution
+horizontal_line_conv = [[1, 1], 
+                        [-1, -1]]
+                        
+### load_my_image and visualize_conv are utility functions provided for this exercise
+original_image = load_my_image() 
+visualize_conv(original_image, horizontal_line_conv)
+
+
