@@ -1,0 +1,30 @@
+### Load the data
+import pandas as pd
+reviews = pd.read_csv("../input/wine-reviews/winemag-data-130k-v2.csv", index_col=0)
+
+### Renaming a column: rename lets you rename index names and/or column names
+reviews.rename(columns={'points': 'score'})
+
+# you can also rename specific indices. Here: 0 -> 'firstEntry', 1: 'secondEntry'
+reviews.rename(index={0: 'firstEntry', 1: 'secondEntry'})
+
+### Both the row index and the column index can have their own name attribute. The complimentary rename_axis method may be used to change these names.
+
+reviews.rename_axis("wines", axis='rows').rename_axis("fields", axis='columns')
+
+### COMBINING DATASET
+
+### concat : This function works just like the list.concat method in core Python: given a list of elements, it will smush those elements together along an axis.
+
+canadian_youtube = pd.read_csv("../input/youtube-new/CAvideos.csv")
+british_youtube = pd.read_csv("../input/youtube-new/GBvideos.csv")
+
+pd.concat([canadian_youtube, british_youtube])
+
+### join : join lets you combine different DataFrame objects which have an index in common. For example, to pull down videos that happened to be trending on the same day in both Canada and the UK, we could do the following:
+
+left = canadian_youtube.set_index(['title', 'trending_date'])
+right = british_youtube.set_index(['title', 'trending_date'])
+
+left.join(right, lsuffix='_CAN', rsuffix='_UK')
+# The lsuffix and rsuffix parameters are necessary here because the data has the same column names in both British and Canadian datasets. If this wasn't true (because, say, we'd renamed them beforehand) we wouldn't need them.
